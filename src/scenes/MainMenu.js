@@ -78,6 +78,7 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
       this.path = this.add.path();
       this.path.add(line1);
 
+
       const delayIncrement = 300;
       const totalFollowers = 6;
       
@@ -85,6 +86,20 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
         this[`ball${i}`] = this.add.follower(line1, -100, game.config.height-(game.config.height/1.75), 'rocket');
         this[`ball${i}`].startFollow({
           delay: (i - 1) * delayIncrement,
+          duration: 800,
+          yoyo: true,
+          ease: 'Sine.easeInOut',
+          repeat: -1,
+        });
+      }
+      const delayIncrement2 = 300;
+
+      const totalFollowers2 = 12;
+
+      for (let i = 7; i <= totalFollowers2; i++) {
+        this[`ball${i}`] = this.add.follower(line1, -200, game.config.height-(game.config.height/2), 'rocket');
+        this[`ball${i}`].startFollow({
+          delay: (i - 1) * delayIncrement2,
           duration: 800,
           yoyo: true,
           ease: 'Sine.easeInOut',
