@@ -19,10 +19,17 @@ this.starfield60.setAlpha(.8)
 
 // white borders
 this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 3000).setOrigin(0, 0)
+
 this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship2', 0, 2000).setOrigin(0,0)
 this.ship02.moveSpeed = 7
 this.ship02.setScale(1.2)
 this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 1000).setOrigin(0,0)
+this.ship04 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*2, 'spaceship2', 0, 3500).setOrigin(0, 0)
+this.ship04.moveSpeed = 7
+this.ship04.setScale(1.2)
+this.ship05= new Spaceship(this, game.config.width + borderUISize*6, borderUISize*10, 'spaceship', 0, 500).setOrigin(0, 0)
+
+
 this.p1Rocket = new Rocket(this, game.config.width/2, 860, 'rocket').setOrigin(0.5, 0)
 
 this.player = this.physics.add.sprite(450, 876, 'p');
@@ -71,6 +78,7 @@ this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.confi
       bottom: 5,
     },
   }
+  
   this.scoreLeft = this.add.text(game.config.width-(game.config.width/1.07), game.config.height-(game.config.height/1.1), this.p1Score, scoreConfig)
   this.timerright = this.add.text(game.config.width-(game.config.width/4.5), game.config.height-(game.config.height/1.1), this.timer, scoreConfig)
 
@@ -108,13 +116,25 @@ this.input.on('pointermove', pointer => {
         }else if (  this.player.x -5 > pointer.worldX) {
           this.player.x -= 5
         }
+        let scoreConfig = {
+          fontFamily : 'test',
+          fontSize: '30px',
+          backgroundColor: '#000000',
+          color: '#FFFFFF',
+          align: 'center',
+          padding: {
+            top: 5,
+            bottom: 5,
+          },
+          fixedWidth: 1000 
+        }
       if (this.timerright.text <=0 ){
-        this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5)
-        this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu').setOrigin(0.5)
+        this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER',scoreConfig).setOrigin(0.5)
+        this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart',scoreConfig).setOrigin(0.5)
         this.gameOver = true
       }
       if(this.p1Rocket.y <= game.config.height-(game.config.height/1.01)) {
-        this.timer+=5
+        this.timer+=1
         this.p1Rocket.reset()
     }
       if (this.p1Rocket.y >820){
@@ -139,32 +159,46 @@ this.input.on('pointermove', pointer => {
         if(!this.gameOver) {               
         this.p1Rocket.update()
         // this.player.update()
-         this.ship01.update()               // update spaceships (x3)
+ this.ship01.update()               // update spaceships (x3)
  this.ship02.update()
  this.ship03.update()
+ this.ship04.update()
+ this.ship05.update()
+
+
+        }
+        if(this.checkCollision(this.p1Rocket, this.ship05)) {
+ 
+
+           this.p1Rocket.reset()
+           this.shipExplode(this.ship05)   
         }
  if(this.checkCollision(this.p1Rocket, this.ship03)) {
  
 
-  this.timer -=4
    this.p1Rocket.reset()
    this.shipExplode(this.ship03)   
 }
 if (this.checkCollision(this.p1Rocket, this.ship02)) {
 
-  this.timer -=4
 
   this.p1Rocket.reset()
   this.shipExplode(this.ship02)
 }
 if (this.checkCollision(this.p1Rocket, this.ship01)) {
 
-  this.timer -=4
+
 
   this.p1Rocket.reset()
   this.shipExplode(this.ship01)
 }
-    }
+    
+if (this.checkCollision(this.p1Rocket, this.ship04)) {
+
+
+  this.p1Rocket.reset()
+  this.shipExplode(this.ship04)
+}}
       checkCollision(rocket, ship) {
         // simple AABB checking
         if (rocket.x < ship.x + ship.width && 
@@ -177,6 +211,8 @@ if (this.checkCollision(this.p1Rocket, this.ship01)) {
         }
          }
       shipExplode(ship) {
+        ship.moveSpeed = Math.floor((Math.random() * 3)+5);
+        this.timer -=1;
         // temporarily hide ship
         ship.alpha = 0
         // create explosion sprite at ship's position
