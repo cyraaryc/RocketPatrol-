@@ -58,7 +58,7 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
         }).setOrigin(0.5);
       });
       
-      const text2 =  'PATROL';
+      const text2 =  'PATROL -';
       text2.split('').forEach((char, index) => {
         this[`l${index + 7}`] = this.add.text(startX + (index * spacing), startY, char, {
           fontSize: fontSize,
@@ -68,7 +68,7 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
 
       const text3 =  'PRESS ANY KEY TO START';
       text3.split('').forEach((char, index) => {
-        this[`l${index + 13}`] = this.add.text(300+ (index * 35), game.config.height/1.2, char, {
+        this[`l${index + 15}`] = this.add.text(300+ (index * 35), game.config.height/1.2, char, {
           fontSize: 35,
           fontFamily: fontFamily
         }).setOrigin(0.5);
@@ -100,10 +100,10 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
       }
 
 
-      for (let i = 7; i <= 12; i++){
+      for (let i = 7; i <= 14; i++){
         this[`ball${i}`] = this.add.follower(line1, -200, game.config.height-(game.config.height/2), 'rocket');
         this[`ball${i}`].startFollow({
-          delay: (i - 7) * delayIncrement,
+          delay: (i - 9) * delayIncrement,
           duration: 800,
           yoyo: true,
           ease: 'Sine.easeInOut',
@@ -111,10 +111,10 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
         });
       }
 
-      for (let i = 13; i <= 40; i++){
+      for (let i = 13; i <= 42; i++){
         this[`ball${i}`] = this.add.follower(line1, -200, game.config.height-(game.config.height/6), 'rocket');
         this[`ball${i}`].startFollow({
-          delay: (i - 13) * delayIncrement,
+          delay: (i - 15) * delayIncrement,
           duration: 800,
           yoyo: true,
           ease: 'Sine.easeInOut',
@@ -166,7 +166,7 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
 }
 
 update() {
-for (let i = 1; i <= 34; i++) {
+for (let i = 1; i <= 36; i++) {
   this[`l${i}`].y = this[`ball${i}`].y;
 }
 
