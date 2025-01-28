@@ -11,6 +11,7 @@
 // 29 total, or 26 if the the timer doesnt count twice
 // https://opengameart.org/content/space-parallax-background -background //https://opengameart.org/content/space-ship-building-bits-volume-1 -
 //attrubution to Redshrike // https://opengameart.org/content/boxy-bold-truetype-font - font
+//https://chatgpt.com/share/6798556f-e6d4-8000-8696-8116c43f9f5b bc im lazy and didnt want to write for loops myself.
 
 let config = {
     type: Phaser.AUTO,
