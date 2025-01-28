@@ -166,7 +166,7 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
 }
 
 update() {
-for (let i = 1; i <= 36; i++) {
+for (let i = 1; i <= 35; i++) {
   this[`l${i}`].y = this[`ball${i}`].y;
 }
 
