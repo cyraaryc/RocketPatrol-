@@ -9,7 +9,8 @@
 //Implement mouse control for player movement and left mouse click to fire (5)
 //Use Phaser's particle emitter to create a particle explosion when the rocket hits the spaceship (5)
 // 29 total, or 26 if the the timer doesnt count twice
-// citations for any sources you used in your code (you do not need to cite Nathan's code or Phaser documentation)
+// https://opengameart.org/content/space-parallax-background -background //https://opengameart.org/content/space-ship-building-bits-volume-1 -
+attrubution to Redshrike // https://opengameart.org/content/boxy-bold-truetype-font - font
 
 let config = {
     type: Phaser.AUTO,
