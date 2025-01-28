@@ -100,7 +100,7 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
       }
 
 
-      for (let i = 7; i <= 16; i++){
+      for (let i = 7; i <= 15; i++){
         this[`ball${i}`] = this.add.follower(line1, -200, game.config.height-(game.config.height/2), 'rocket');
         this[`ball${i}`].startFollow({
           delay: (i - 9) * delayIncrement,
@@ -111,7 +111,7 @@ this.load.spritesheet('R', './Assets/Ranimation.png', { frameWidth: 11, frameHei
         });
       }
 
-      for (let i = 13; i <= 42; i++){
+      for (let i = 15; i <= 42; i++){
         this[`ball${i}`] = this.add.follower(line1, -200, game.config.height-(game.config.height/6), 'rocket');
         this[`ball${i}`].startFollow({
           delay: (i - 15) * delayIncrement,
